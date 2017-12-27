@@ -6,7 +6,10 @@ spring:
     url: jdbc:mysql://127.0.0.1/weixin-sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
-#logging:
+#    hibernate:
+#      ddl-auto: update
+
+#logging:,
 ##  pattern:
 ##     设置控制台输出的格式
 ##    console: "%d - %msg%n"
@@ -19,3 +22,6 @@ spring:
 #  # 设置指定类的日志级别
 #  level:
 #    com.earthchen.weixinsell.LoggerTest: debug
+
+server:
+  context-path: /sell

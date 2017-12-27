@@ -54,8 +54,8 @@
 
     <root level="info">
         <appender-ref ref="consoleLog" />
-        <appender-ref ref="fileInfoLog" />
-        <appender-ref ref="fileErrorLog" />
+        <!--<appender-ref ref="fileInfoLog" />-->
+        <!--<appender-ref ref="fileErrorLog" />-->
     </root>
 
 </configuration>
