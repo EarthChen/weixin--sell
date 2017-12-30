@@ -1,8 +1,9 @@
 package com.earthchen.weixinsell.dto;
 
 import com.earthchen.weixinsell.domain.OrderDetail;
-import com.earthchen.weixinsell.enums.OrderStatusEnum;
-import com.earthchen.weixinsell.enums.PayStatusEnum;
+import com.earthchen.weixinsell.util.serializer.DateToLongSerializer;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -11,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+// 忽略对null值的序列化，不返回
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
 
     /**
@@ -57,11 +60,13 @@ public class OrderDTO {
     /**
      * 创建时间.
      */
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date createTime;
 
     /**
      * 更新时间.
      */
+    @JsonSerialize(using = DateToLongSerializer.class)
     private Date updateTime;
 
     /**
