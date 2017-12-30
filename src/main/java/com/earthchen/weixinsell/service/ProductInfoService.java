@@ -1,6 +1,7 @@
 package com.earthchen.weixinsell.service;
 
 import com.earthchen.weixinsell.domain.ProductInfo;
+import com.earthchen.weixinsell.dto.CartDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -37,8 +38,12 @@ public interface ProductInfoService {
     /**
      * 加库存
      */
+    void increaseStock(List<CartDTO> cartDTOList);
+
+
 
     /**
      * 减库存
      */
+    void decreaseStock(List<CartDTO> cartDTOList);
 }
