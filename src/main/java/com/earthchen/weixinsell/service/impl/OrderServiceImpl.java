@@ -13,11 +13,10 @@ import com.earthchen.weixinsell.enums.PayStatusEnum;
 import com.earthchen.weixinsell.enums.ResultEnum;
 import com.earthchen.weixinsell.exception.SellException;
 import com.earthchen.weixinsell.service.OrderService;
+import com.earthchen.weixinsell.service.PayService;
 import com.earthchen.weixinsell.service.ProductInfoService;
 import com.earthchen.weixinsell.util.KeyUtil;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -43,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductInfoService productInfoService;
+
+    @Autowired
+    private PayService payService;
 
     /**
      * 创建订单
@@ -190,8 +192,7 @@ public class OrderServiceImpl implements OrderService {
 
         //如果已支付, 需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            //TODO
-            //payService.refund(orderDTO);
+            payService.refund(orderDTO);
         }
 
         return orderDTO;
