@@ -1,7 +1,7 @@
 package com.earthchen.weixinsell.service.impl;
 
 import com.earthchen.weixinsell.domain.ProductInfo;
-import com.earthchen.weixinsell.enums.ProductStatusEnums;
+import com.earthchen.weixinsell.enums.ProductStatusEnum;
 import com.earthchen.weixinsell.service.ProductInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -57,10 +57,22 @@ public class ProductInfoServiceImplTest {
         productInfo.setProductStock(100);
         productInfo.setProductDescription("很好吃的虾");
         productInfo.setProductIcon("http://xxxxx.jpg");
-        productInfo.setProductStatus(ProductStatusEnums.DOWN.getCode());
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
         productInfo.setCategoryType(2);
 
         ProductInfo result = productService.save(productInfo);
         assertNotNull(result);
+    }
+
+    @Test
+    public void onSale() {
+        ProductInfo result = productService.onSale("123456");
+        assertEquals(ProductStatusEnum.UP, result.getProductStatusEnum());
+    }
+
+    @Test
+    public void offSale() {
+        ProductInfo result = productService.offSale("123456");
+        assertEquals(ProductStatusEnum.DOWN, result.getProductStatusEnum());
     }
 }

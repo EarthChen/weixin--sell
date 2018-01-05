@@ -85,9 +85,11 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
+
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
 

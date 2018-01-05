@@ -1,5 +1,8 @@
 package com.earthchen.weixinsell.domain;
 
+import com.earthchen.weixinsell.enums.ProductStatusEnum;
+import com.earthchen.weixinsell.util.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -63,6 +66,11 @@ public class ProductInfo {
      * 更新时间
      */
     private Date updateTime;
+
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 
 
 }

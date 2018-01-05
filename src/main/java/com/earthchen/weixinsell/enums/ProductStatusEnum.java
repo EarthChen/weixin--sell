@@ -6,7 +6,7 @@ import lombok.Getter;
  * 构造商品状态枚举类
  */
 @Getter
-public enum ProductStatusEnums implements CodeEnum{
+public enum ProductStatusEnum implements CodeEnum{
 
     UP(0,"上架"),
     DOWN(1,"下架")
@@ -16,7 +16,7 @@ public enum ProductStatusEnums implements CodeEnum{
 
     private String message;
 
-    ProductStatusEnums(Integer code, String message) {
+    ProductStatusEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }

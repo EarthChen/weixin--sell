@@ -3,7 +3,7 @@ package com.earthchen.weixinsell.service.impl;
 import com.earthchen.weixinsell.dao.ProductInfoDao;
 import com.earthchen.weixinsell.domain.ProductInfo;
 import com.earthchen.weixinsell.dto.CartDTO;
-import com.earthchen.weixinsell.enums.ProductStatusEnums;
+import com.earthchen.weixinsell.enums.ProductStatusEnum;
 import com.earthchen.weixinsell.enums.ResultEnum;
 import com.earthchen.weixinsell.exception.SellException;
 import com.earthchen.weixinsell.service.ProductInfoService;
@@ -28,7 +28,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
     @Override
     public List<ProductInfo> findUpAll() {
-        return productInfoDao.findByProductStatus(ProductStatusEnums.UP.getCode());
+        return productInfoDao.findByProductStatus(ProductStatusEnum.UP.getCode());
     }
 
     @Override
@@ -75,5 +75,35 @@ public class ProductInfoServiceImpl implements ProductInfoService {
         }
 
 
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = productInfoDao.findOne(productId);
+        if (productInfo == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productInfoDao.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productInfoDao.findOne(productId);
+        if (productInfo == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN) {
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+
+        //更新
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return productInfoDao.save(productInfo);
     }
 }
