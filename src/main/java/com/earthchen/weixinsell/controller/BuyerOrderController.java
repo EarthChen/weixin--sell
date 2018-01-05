@@ -1,7 +1,7 @@
 package com.earthchen.weixinsell.controller;
 
 
-import com.earthchen.weixinsell.VO.ResultVO;
+import com.earthchen.weixinsell.vo.ResultVO;
 import com.earthchen.weixinsell.converter.OrderFormToOrderDTOConverter;
 import com.earthchen.weixinsell.dto.OrderDTO;
 import com.earthchen.weixinsell.enums.ResultEnum;

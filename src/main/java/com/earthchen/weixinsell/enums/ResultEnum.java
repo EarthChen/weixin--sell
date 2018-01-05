@@ -51,10 +51,10 @@ public enum ResultEnum {
 
     private Integer code;
 
-    private String messge;
+    private String message;
 
-    ResultEnum(Integer code, String messge) {
+    ResultEnum(Integer code, String message) {
         this.code = code;
-        this.messge = messge;
+        this.message = message;
     }
 }

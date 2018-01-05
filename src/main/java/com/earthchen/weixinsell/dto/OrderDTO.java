@@ -1,8 +1,11 @@
 package com.earthchen.weixinsell.dto;
 
 import com.earthchen.weixinsell.domain.OrderDetail;
+import com.earthchen.weixinsell.enums.OrderStatusEnum;
+import com.earthchen.weixinsell.enums.PayStatusEnum;
+import com.earthchen.weixinsell.util.EnumUtil;
 import com.earthchen.weixinsell.util.serializer.DateToLongSerializer;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
@@ -73,4 +76,14 @@ public class OrderDTO {
      * 订单列表
      */
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

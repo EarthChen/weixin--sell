@@ -1,9 +1,9 @@
 package com.earthchen.weixinsell.controller;
 
 
-import com.earthchen.weixinsell.VO.ProductInfoVO;
-import com.earthchen.weixinsell.VO.ProductVO;
-import com.earthchen.weixinsell.VO.ResultVO;
+import com.earthchen.weixinsell.vo.ProductInfoVO;
+import com.earthchen.weixinsell.vo.ProductVO;
+import com.earthchen.weixinsell.vo.ResultVO;
 import com.earthchen.weixinsell.domain.ProductCategory;
 import com.earthchen.weixinsell.domain.ProductInfo;
 import com.earthchen.weixinsell.service.ProductCategoryService;

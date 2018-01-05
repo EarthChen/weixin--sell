@@ -1,4 +1,4 @@
-package com.earthchen.weixinsell.VO;
+package com.earthchen.weixinsell.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

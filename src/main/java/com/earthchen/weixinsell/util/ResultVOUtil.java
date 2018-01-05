@@ -1,6 +1,6 @@
 package com.earthchen.weixinsell.util;
 
-import com.earthchen.weixinsell.VO.ResultVO;
+import com.earthchen.weixinsell.vo.ResultVO;
 
 public class ResultVOUtil {
 
