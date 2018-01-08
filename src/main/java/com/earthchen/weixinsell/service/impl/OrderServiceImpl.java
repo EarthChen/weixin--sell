@@ -15,7 +15,9 @@ import com.earthchen.weixinsell.exception.SellException;
 import com.earthchen.weixinsell.service.OrderService;
 import com.earthchen.weixinsell.service.PayService;
 import com.earthchen.weixinsell.service.ProductInfoService;
+import com.earthchen.weixinsell.service.PushMessageService;
 import com.earthchen.weixinsell.util.KeyUtil;
+import com.earthchen.weixinsell.websocket.WebSocket;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     /**
      * 创建订单
@@ -111,6 +119,9 @@ public class OrderServiceImpl implements OrderService {
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productInfoService.decreaseStock(cartDTOList);
+
+        // 发送webSocket消息
+        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }
@@ -227,6 +238,10 @@ public class OrderServiceImpl implements OrderService {
             log.error("完结订单== 更新失败，orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        // 推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
 
         return orderDTO;
     }
