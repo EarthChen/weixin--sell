@@ -1,12 +1,17 @@
 package com.earthchen.weixinsell.handler;
 
 import com.earthchen.weixinsell.config.ProjectUrlConfig;
+import com.earthchen.weixinsell.exception.SellException;
 import com.earthchen.weixinsell.exception.SellerAuthorizeException;
+import com.earthchen.weixinsell.util.ResultVOUtil;
+import com.earthchen.weixinsell.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-//@ControllerAdvice
+@ControllerAdvice
 public class SellExceptionHandler {
 
     @Autowired
@@ -22,5 +27,12 @@ public class SellExceptionHandler {
                 .concat("?returnUrl=")
                 .concat(projectUrlConfig.getSell())
                 .concat("/sell/seller/login"));
+    }
+
+
+    @ExceptionHandler(value = SellException.class)
+    @ResponseBody
+    public ResultVO handlerSellerException(SellException e){
+        return ResultVOUtil.error(e.getCode(),e.getMessage());
     }
 }

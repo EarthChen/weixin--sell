@@ -1,7 +1,9 @@
 package com.earthchen.weixinsell.exception;
 
 import com.earthchen.weixinsell.enums.ResultEnum;
+import lombok.Getter;
 
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;
