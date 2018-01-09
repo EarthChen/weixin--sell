@@ -9,6 +9,7 @@ import com.earthchen.weixinsell.service.ProductInfoService;
 import com.earthchen.weixinsell.util.KeyUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -126,6 +127,8 @@ public class SellerProductController {
      * @return
      */
     @PostMapping("/save")
+//    @CachePut(cacheNames = "product", key = "123")
+    @CacheEvict(cacheNames = "product", key = "123") //清除指定缓存
     public ModelAndView save(@Valid ProductForm form,
                              BindingResult bindingResult,
                              Map<String, Object> map) {

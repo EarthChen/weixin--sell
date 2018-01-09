@@ -11,6 +11,7 @@ import com.earthchen.weixinsell.service.ProductInfoService;
 import com.earthchen.weixinsell.util.ResultVOUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +30,7 @@ public class BuyerProductController {
     private ProductCategoryService productCategoryService;
 
     @GetMapping("/list")
+    @Cacheable(cacheNames = "product", key = "123")
     public ResultVO getAllUpProductInfoList() {
 
         List<ProductInfo> productInfoList = productInfoService.findUpAll();
@@ -43,13 +45,13 @@ public class BuyerProductController {
                 productCategoryService.findByCategoryTypeIn(categoryTypeList);
 
         List<ProductVO> productVOList = new ArrayList<>();
-        for (ProductCategory productCategory: productCategoryList) {
+        for (ProductCategory productCategory : productCategoryList) {
             ProductVO productVO = new ProductVO();
             productVO.setCategoryType(productCategory.getCategoryType());
             productVO.setCategoryName(productCategory.getCategoryName());
 
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
-            for (ProductInfo productInfo: productInfoList) {
+            for (ProductInfo productInfo : productInfoList) {
                 if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
                     BeanUtils.copyProperties(productInfo, productInfoVO);
@@ -62,7 +64,6 @@ public class BuyerProductController {
 
         return ResultVOUtil.success(productVOList);
     }
-
 
 
 }
