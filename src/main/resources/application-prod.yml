@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1/weixin-sell?characterEncoding=utf-8&useSSL=false
+  jackson:
+    # 对全局配置不返回null值
+    default-property-inclusion: non_null
+#    hibernate:
+#      ddl-auto: update
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+#logging:,
+##  pattern:
+##     设置控制台输出的格式
+##    console: "%d - %msg%n"
+## 日志输出的路径
+#  path: /var/log/tomcat
+#  # 日志文件的名字
+#  file: /var/log/tomcat/weixin-sell.log
+#  # 设置日志的级别
+##  level: debug
+#  # 设置指定类的日志级别
+#  level:
+#    com.earthchen.weixinsell.LoggerTest: debug
+
+server:
+  context-path: /sell
+
+
+
+wechat:
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
+  mchId: 1483469312
+  mchKey: 06C56A89949D617xxxxxxxxxxx
+  # 配置证书路径
+  keyPath: /var/weixin_cert/h5.p12
+  notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+  templateId:
+      orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+
+projectUrl:
+  wechatMpAuthorize: http://sell.natapp4.cc
+  wechatOpenAuthorize: http://sell.natapp4.cc
+  sell: http://sell.natapp4.cc
+
+
+
+

@@ -102,6 +102,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>weixin-sell</finalName>
     </build>
 
 
